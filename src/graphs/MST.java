@@ -5,6 +5,7 @@ import union_find.WeightedQuickUnion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.TreeMap;
 
 /**
  * Created by Leonti on 2016-03-30.
@@ -17,7 +18,12 @@ public class MST {
         this.V = WG.getV();
         this.edges = new ArrayList<>(this.V - 1);
 //        kruskalMST(WG);
-        lazyPrimMST(WG);
+//        lazyPrimMST(WG);
+        eagerPrimMST(WG);
+    }
+
+    public ArrayList<WeightedEdge> getEdges() {
+        return edges;
     }
 
     private void kruskalMST(WeightedEdgeGraph WG) {
@@ -58,7 +64,6 @@ public class MST {
             if (!isVisited[v])
                 visit(WG, v, isVisited, priorityQueue);
         }
-
     }
 
     private void visit(WeightedEdgeGraph WG, int u,
@@ -71,8 +76,94 @@ public class MST {
         }
     }
 
-    public ArrayList<WeightedEdge> getEdges() {
-        return edges;
+    private void eagerPrimMST(WeightedEdgeGraph WG) {
+        WeightedEdge[] shortestEdge = new WeightedEdge[V];
+        double[] currentShortestWeight = new double[V];
+        boolean[] isVisited = new boolean[V];
+        PriorityQueue<Pair> priorityQueue = new PriorityQueue<>();
+
+        for (int i = 0; i < V; i++) {
+            currentShortestWeight[i] = Double.MAX_VALUE;
+        }
+
+        for (int i = 0; i < V; i++) {
+            if (!isVisited[i]) {
+                visit(WG, i, currentShortestWeight, priorityQueue, isVisited, shortestEdge);
+            }
+        }
+
+        for (WeightedEdge e : shortestEdge) {
+            if (e != null) {
+                edges.add(e);
+            }
+        }
+    }
+
+    private void visit(WeightedEdgeGraph WG, int s, double[] currentShortestWeight,
+                       PriorityQueue<Pair> priorityQueue, boolean[] isVisited, WeightedEdge[] shortestEdge) {
+        currentShortestWeight[s] = 0.;
+        priorityQueue.offer(new Pair(s, currentShortestWeight[s]));
+        int u;
+        while (!priorityQueue.isEmpty()) {
+            u = priorityQueue.poll().key;
+            scan(WG, u, currentShortestWeight, priorityQueue, isVisited, shortestEdge);
+        }
+    }
+
+    private void scan(WeightedEdgeGraph WG, int u, double[] currentShortestWeight,
+                      PriorityQueue<Pair> priorityQueue, boolean[] isVisited, WeightedEdge[] shortestEdge) {
+        isVisited[u] = true;
+        int v;
+        Pair currentPair;
+        for (WeightedEdge e : WG.getAdj(u)) {
+            v = e.getAnotherVertex(u);
+            if (isVisited[v])
+                continue;
+            if (e.getWeight() < currentShortestWeight[v]) {
+                currentShortestWeight[v] = e.getWeight();
+                shortestEdge[v] = e;
+                currentPair = new Pair(v, currentShortestWeight[v]);
+                if (priorityQueue.contains(currentPair)) {
+                    priorityQueue.remove(currentPair);
+                }
+                priorityQueue.offer(currentPair);
+            }
+        }
+    }
+
+    private static class Pair implements Comparable<Pair> {
+        public int key;
+        public double value;
+
+        public Pair(int key, double value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public int compareTo(Pair o) {
+            if (this.value < o.value) {
+                return -1;
+            } else if (this.value > o.value) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof Pair) {
+                return this.key == ((Pair) obj).key;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public int hashCode() {
+            return key;
+        }
     }
 
     public static void main(String[] args) {
@@ -86,6 +177,13 @@ public class MST {
         graph.addEdge(new WeightedEdge(1, 5, 0.32));
         graph.addEdge(new WeightedEdge(2, 7, 0.34));
         graph.addEdge(new WeightedEdge(4, 5, 0.35));
+        graph.addEdge(new WeightedEdge(1, 2, 0.36));
+        graph.addEdge(new WeightedEdge(4, 7, 0.37));
+        graph.addEdge(new WeightedEdge(0, 4, 0.38));
+        graph.addEdge(new WeightedEdge(6, 2, 0.40));
+        graph.addEdge(new WeightedEdge(3, 6, 0.52));
+        graph.addEdge(new WeightedEdge(6, 0, 0.58));
+        graph.addEdge(new WeightedEdge(6, 4, 0.93));
         MST mst = new MST(graph);
         for (WeightedEdge e : mst.getEdges()) {
             System.out.println(e.getAnyVertex() + " " + e.getAnotherVertex(e.getAnyVertex()) + " " + e.getWeight());

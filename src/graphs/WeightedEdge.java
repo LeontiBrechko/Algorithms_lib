@@ -19,7 +19,7 @@ public class WeightedEdge implements Comparable<WeightedEdge> {
     }
 
     public int getAnotherVertex(int u) {
-        return u == this.u ? v : u;
+        return u == this.u ? this.v : this.u;
     }
 
     public double getWeight() {
