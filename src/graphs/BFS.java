@@ -1,5 +1,7 @@
 package graphs;
 
+import graphs.graph_impl.Graph;
+
 import java.util.ArrayDeque;
 import java.util.HashMap;
 

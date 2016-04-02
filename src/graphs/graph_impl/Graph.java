@@ -1,4 +1,4 @@
-package graphs;
+package graphs.graph_impl;
 
 import java.util.ArrayDeque;
 import java.util.HashMap;

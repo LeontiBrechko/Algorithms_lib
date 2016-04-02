@@ -1,4 +1,4 @@
-package graphs;
+package graphs.graph_impl;
 
 /**
  * Created by Leonti on 2016-03-30.
