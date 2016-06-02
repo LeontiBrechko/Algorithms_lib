@@ -14,6 +14,7 @@ import java.util.PriorityQueue;
 public class FordFulkerson {
     private boolean[] isVisited;
     private FlowEdge[] edgeTo;
+
     private double value;
 
     public FordFulkerson(FlowNetwork G, int s, int t) {
