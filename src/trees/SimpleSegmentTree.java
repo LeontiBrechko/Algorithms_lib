@@ -40,7 +40,7 @@ public class SimpleSegmentTree {
             tree[v] = val;
         } else {
             int tm = (tr + tl) >>> 1;
-            if (tm <= pos) {
+            if (pos <= tm) {
                 update(v * 2, tl, tm, pos, val);
             } else {
                 update(v * 2 + 1, tm + 1, tr, pos, val);

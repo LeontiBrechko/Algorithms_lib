@@ -6,11 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61b92b97-7eb7-4c6f-ac0a-9ac676456efe" name="Default" comment="- Rod cut (dp)">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/dp/MatrixChainMultiplication.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/trees/MaxSegmentTree.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/trees/SimpleSegmentTree.java" />
+    <list default="true" id="61b92b97-7eb7-4c6f-ac0a-9ac676456efe" name="Default" comment="- Matrix chain mult (dp, not completed)&#10;- Segment trees (simple and max)">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/trees/MaxSegmentTree.java" afterPath="$PROJECT_DIR$/src/trees/MaxSegmentTree.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/trees/SimpleSegmentTree.java" afterPath="$PROJECT_DIR$/src/trees/SimpleSegmentTree.java" />
     </list>
     <ignored path="algorithms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,21 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SimpleSegmentTree.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SimpleSegmentTree.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/trees/SimpleSegmentTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.5915493">
+              <caret line="42" column="25" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MaxSegmentTree.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MaxSegmentTree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trees/MaxSegmentTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1549295">
-              <caret line="55" column="78" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="47" column="61" selection-start-line="47" selection-start-column="61" selection-end-line="47" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -132,8 +131,8 @@
         <option value="$PROJECT_DIR$/src/dp/RodCut.java" />
         <option value="$PROJECT_DIR$/src/Test.java" />
         <option value="$PROJECT_DIR$/src/dp/MatrixChainMultiplication.java" />
-        <option value="$PROJECT_DIR$/src/trees/SimpleSegmentTree.java" />
         <option value="$PROJECT_DIR$/src/trees/MaxSegmentTree.java" />
+        <option value="$PROJECT_DIR$/src/trees/SimpleSegmentTree.java" />
       </list>
     </option>
   </component>
@@ -211,24 +210,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="algorithms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Algorithms_lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trees" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -893,7 +874,7 @@
       <workItem from="1463861683427" duration="5175000" />
       <workItem from="1464789861492" duration="173000" />
       <workItem from="1464828700502" duration="4088000" />
-      <workItem from="1465516480999" duration="1781000" />
+      <workItem from="1465516480999" duration="3326000" />
     </task>
     <task id="LOCAL-00001" summary="- Weighted edges and graphs&#10;- MST algorithms (Kruskal`s, Prim`s lazy)&#10;- Weighted union find">
       <created>1459388352447</created>
@@ -925,11 +906,17 @@
       <option name="project" value="LOCAL" />
       <updated>1464830888414</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="- Matrix chain mult (dp, not completed)&#10;- Segment trees (simple and max)">
+      <created>1465519511428</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1465519511428</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95944000" />
+    <option name="totallyTimeSpent" value="97489000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -942,7 +929,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3780822" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3780822" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18901454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1004,7 +991,8 @@
     <MESSAGE value="- shortest path algorithms (single source)" />
     <MESSAGE value="- max flow, min cut algorithms" />
     <MESSAGE value="- Rod cut (dp)" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Rod cut (dp)" />
+    <MESSAGE value="- Matrix chain mult (dp, not completed)&#10;- Segment trees (simple and max)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Matrix chain mult (dp, not completed)&#10;- Segment trees (simple and max)" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1399,7 +1387,7 @@
         <state vertical-scroll-proportion="2.1529412">
           <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1420,18 +1408,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trees/SimpleSegmentTree.java">
+    <entry file="file://$PROJECT_DIR$/src/trees/MaxSegmentTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="47" column="61" selection-start-line="47" selection-start-column="61" selection-end-line="47" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trees/MaxSegmentTree.java">
+    <entry file="file://$PROJECT_DIR$/src/trees/SimpleSegmentTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1549295">
-          <caret line="55" column="78" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
+        <state vertical-scroll-proportion="0.5915493">
+          <caret line="42" column="25" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
           <folding />
         </state>
       </provider>
