@@ -25,11 +25,7 @@ public class Pair implements Comparable<Pair> {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Pair) {
-            return this.key == ((Pair) obj).key;
-        } else {
-            return false;
-        }
+        return obj instanceof Pair && this.key == ((Pair) obj).key;
     }
 
     @Override

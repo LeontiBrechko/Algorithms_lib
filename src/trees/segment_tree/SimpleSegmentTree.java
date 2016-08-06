@@ -1,13 +1,13 @@
-package trees;
+package trees.segment_tree;
 
 /**
  * Created by Leonti on 2016-06-09.
  */
-public class MaxSegmentTree {
+public class SimpleSegmentTree {
     private int[] baseArray;
     private int[] tree;
 
-    public MaxSegmentTree(int a[]) {
+    public SimpleSegmentTree(int a[]) {
         baseArray = a;
         tree = new int[4 * a.length + 1];
     }
@@ -19,20 +19,20 @@ public class MaxSegmentTree {
             int tm = (tl + tr) >>> 1;
             build(v * 2, tl, tm);
             build(v * 2 + 1, tm + 1, tr);
-            tree[v] = Math.max(tree[v * 2], tree[v * 2 + 1]);
+            tree[v] = tree[v * 2] + tree[v * 2 + 1];
         }
     }
 
-    public int maxQuery(int v, int tl, int tr, int l, int r) {
+    public int sumQuery(int v, int tl, int tr, int l, int r) {
         if (l > r) {
-            return Integer.MIN_VALUE;
+            return 0;
         }
         if (l == tl && r == tr) {
             return tree[v];
         }
         int tm = (tl + tr) >>> 1;
-        return Math.max(maxQuery(v * 2, tl, tm, l, Math.min(tm, r)),
-                maxQuery(v * 2 + 1, tm + 1, tr, Math.max(tm + 1, l), r));
+        return sumQuery(v * 2, tl, tm, l, Math.min(tm, r))
+                + sumQuery(v * 2 + 1, tm + 1, tr, Math.max(tm + 1, l), r);
     }
 
     public void update(int v, int tl, int tr, int pos, int val) {
@@ -45,14 +45,14 @@ public class MaxSegmentTree {
             } else {
                 update(v * 2 + 1, tm + 1, tr, pos, val);
             }
-            tree[v] = Math.max(tree[v * 2], tree[v * 2 + 1]);
+            tree[v] = tree[v * 2] + tree[v * 2 + 1];
         }
     }
 
     public static void main(String[] args) {
-        int[] a = new int[] {1, 4, 2, 7};
-        MaxSegmentTree simpleSegmentTree = new MaxSegmentTree(a);
+        int[] a = new int[] {1, 2, 3, 4, 5, 6};
+        SimpleSegmentTree simpleSegmentTree = new SimpleSegmentTree(a);
         simpleSegmentTree.build(1, 0, a.length - 1);
-        System.out.println(simpleSegmentTree.maxQuery(1, 0, a.length - 1, 1, 2));
+        System.out.println(simpleSegmentTree.sumQuery(1, 0, a.length - 1, 1, 5));
     }
 }
