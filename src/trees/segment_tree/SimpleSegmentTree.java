@@ -3,6 +3,7 @@ package trees.segment_tree;
 /**
  * Created by Leonti on 2016-06-09.
  */
+// 1-indexed
 public class SimpleSegmentTree {
     private int[] baseArray;
     private int[] tree;
@@ -48,6 +49,25 @@ public class SimpleSegmentTree {
             tree[v] = tree[v * 2] + tree[v * 2 + 1];
         }
     }
+
+//    private int arraySize(int n) {
+//        2 ∗ 2floor((log2(n))+1.
+//        int power = (int) Math.ceil(Math.log(n) / Math.log(2));
+//        int level = power + 1;
+//        int lastLevel = (int) Math.pow(2, power);
+//        return (int) (2 * lastLevel * (1 - Math.pow(0.5, level)));
+//    }
+//
+//    private void buildTree(int v, int tl, int tr) {
+//        if (tl == tr) {
+//            tree[v] = a[tl];
+//        } else {
+//            int tm = (tl + tr) >>> 1;
+//            buildTree(v * 2 + 1, tl, tm);
+//            buildTree(v * 2 + 2, tm + 1, tr);
+//            tree[v] = tree[v * 2 + 1] + tree[v * 2 + 2];
+//        }
+//    }
 
     public static void main(String[] args) {
         int[] a = new int[] {1, 2, 3, 4, 5, 6};

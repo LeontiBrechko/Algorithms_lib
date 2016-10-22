@@ -14,14 +14,18 @@ public class BinaryIndexedTree {
     }
 
     void increaseValue(int index, int value) {
-        for (;index < BIT.length; index += index&-index)
+        for (; index < BIT.length; index += index & -index)
             BIT[index] += value;
     }
 
     long query(int index) {
         long sum = 0;
-        for (;index > 0; index -= index&-index)
+        for (; index > 0; index -= index & -index)
             sum += BIT[index];
         return sum;
+    }
+
+    long query(int i, int j) {
+        return query(j) - (i == 1 ? 0 : query(i - 1));
     }
 }

@@ -1,4 +1,4 @@
-package dp;
+package paradigms.dp;
 
 /**
  * Created by Leonti on 2016-06-01.
