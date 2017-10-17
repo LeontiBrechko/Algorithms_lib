@@ -53,6 +53,6 @@ public class NumberTheory {
         }
         extendedEuclid(b, a % b);
         int x1 = y;
-        int y1 = x - (x)
+        int y1 = x - (x);
     }
 }
