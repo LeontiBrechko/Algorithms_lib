@@ -30,7 +30,7 @@ public class BinaryLifting {
         for (int i = 0; i < n; i++) dp[i][0] = parent[i];
         for (int j = 1; j <= log2n; j++) {
             for (int i = 0; i < n; i++) {
-                dp[i][j] = dp[dp[i][j - 1]][i - 1];
+                dp[i][j] = dp[dp[i][j - 1]][j - 1];
             }
         }
     }

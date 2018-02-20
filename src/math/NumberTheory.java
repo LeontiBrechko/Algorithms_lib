@@ -1,8 +1,6 @@
 package math;
 
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * Created by Leonti on 2016-10-12.
@@ -22,6 +20,20 @@ public class NumberTheory {
         }
         return primes;
     }
+
+//    private int gcd(int a, int b) {
+//        if (a < b) {
+//            int temp = a;
+//            a = b;
+//            b = temp;
+//        }
+//        while (b != 0) {
+//            int temp = a % b;
+//            a = b;
+//            b = temp;
+//        }
+//        return Math.abs(a);
+//    }
 
     private int gcd(int a, int b) {return b == 0 ? a : gcd(b, a % b);}
     private int lcm(int a, int b) {return a * (b / gcd(a, b));}
@@ -54,5 +66,19 @@ public class NumberTheory {
         extendedEuclid(b, a % b);
         int x1 = y;
         int y1 = x - (x);
+    }
+
+    private long powRightToLeft(long x, long pow, long mod) {
+        if (x == 0) return pow == 0 ? 1 : 0;
+
+        long res = 1;
+        long e = x;
+        while (pow > 0) {
+            if ((pow & 1) > 0) res = (res * e) % mod;
+            e = (e * e) % mod;
+            pow >>= 1;
+        }
+
+        return res;
     }
 }
