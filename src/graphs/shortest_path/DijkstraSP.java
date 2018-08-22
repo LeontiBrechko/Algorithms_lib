@@ -5,7 +5,8 @@ import graphs.graph_impl.WeightedEdgeDigraph;
 import lb.util.Pair;
 
 import java.util.ArrayDeque;
-import java.util.PriorityQueue;
+import java.util.Arrays;
+import java.util.TreeSet;
 
 /**
  * Created by Leonti on 2016-03-31.
@@ -13,25 +14,24 @@ import java.util.PriorityQueue;
 public class DijkstraSP {
     private final double[] weightTo;
     private final DirectedWeightEdge[] edgeTo;
-    private final PriorityQueue<Pair> priorityQueue;
+    private final TreeSet<Pair> tree;
 
     public DijkstraSP(WeightedEdgeDigraph digraph, int s) {
         weightTo = new double[digraph.getV()];
         edgeTo = new DirectedWeightEdge[digraph.getV()];
-        priorityQueue = new PriorityQueue<>();
+        tree = new TreeSet<>();
 
-        for (int i = 0; i < digraph.getV(); i++) {
-            weightTo[i] = Double.MAX_VALUE;
-        }
-        weightTo[s] = 0.;
+        Arrays.fill(weightTo, Double.POSITIVE_INFINITY);
 
-        priorityQueue.offer(new Pair(s, 0.));
-        int u;
-        while (!priorityQueue.isEmpty()){
-            u = priorityQueue.poll().key;
-            for (DirectedWeightEdge e : digraph.getAdj(u)) {
+        weightTo[s] = 0.0;
+        tree.add(new Pair(s, 0.0));
+
+        Pair next;
+        while (!tree.isEmpty()) {
+            next = tree.pollFirst();
+            if (next == null) throw new IllegalStateException();
+            for (DirectedWeightEdge e: digraph.getAdj(next.key))
                 relax(e);
-            }
         }
     }
 
@@ -50,15 +50,12 @@ public class DijkstraSP {
     private void relax(DirectedWeightEdge e) {
         int u = e.getFrom();
         int v = e.getTo();
-        Pair nextPair;
         if (weightTo[v] > weightTo[u] + e.getWeight()) {
             weightTo[v] = weightTo[u] + e.getWeight();
             edgeTo[v] = e;
-            nextPair = new Pair(v, weightTo[v]);
-            if (priorityQueue.contains(v)) {
-                priorityQueue.remove(nextPair);
-            }
-            priorityQueue.offer(nextPair);
+            Pair next = new Pair(v, weightTo[v]);
+            tree.remove(next);
+            tree.add(next);
         }
     }
 
@@ -66,26 +63,43 @@ public class DijkstraSP {
         return edgeTo;
     }
 
-    public static void main(String[] args) {
-        WeightedEdgeDigraph graph = new WeightedEdgeDigraph(8);
-        graph.addEdge(new DirectedWeightEdge(0, 1, 5.0));
-        graph.addEdge(new DirectedWeightEdge(0, 4, 9.0));
-        graph.addEdge(new DirectedWeightEdge(0, 7, 8.0));
-        graph.addEdge(new DirectedWeightEdge(1, 2, 12.0));
-        graph.addEdge(new DirectedWeightEdge(1, 3, 15.0));
-        graph.addEdge(new DirectedWeightEdge(1, 7, 4.0));
-        graph.addEdge(new DirectedWeightEdge(2, 3, 3.0));
-        graph.addEdge(new DirectedWeightEdge(2, 6, 11.0));
-        graph.addEdge(new DirectedWeightEdge(3, 6, 9.0));
-        graph.addEdge(new DirectedWeightEdge(4, 5, 4.0));
-        graph.addEdge(new DirectedWeightEdge(4, 7, 5.0));
-        graph.addEdge(new DirectedWeightEdge(5, 2, 1.0));
-        graph.addEdge(new DirectedWeightEdge(5, 6, 13.0));
-        graph.addEdge(new DirectedWeightEdge(7, 5, 6.0));
-        graph.addEdge(new DirectedWeightEdge(7, 2, 7.0));
+    public static void main(String[] args)
+    {
+        WeightedEdgeDigraph graph = new WeightedEdgeDigraph(9);
+        graph.addEdge(new DirectedWeightEdge(0, 1, 4));
+        graph.addEdge(new DirectedWeightEdge(0, 7, 8));
+        graph.addEdge(new DirectedWeightEdge(1, 2, 8));
+        graph.addEdge(new DirectedWeightEdge(1, 7, 11));
+        graph.addEdge(new DirectedWeightEdge(2, 3, 7));
+        graph.addEdge(new DirectedWeightEdge(2, 5, 4));
+        graph.addEdge(new DirectedWeightEdge(2, 8, 2));
+        graph.addEdge(new DirectedWeightEdge(3, 4, 9));
+        graph.addEdge(new DirectedWeightEdge(3, 5, 14));
+        graph.addEdge(new DirectedWeightEdge(4, 5, 10));
+        graph.addEdge(new DirectedWeightEdge(5, 6, 2));
+        graph.addEdge(new DirectedWeightEdge(6, 7, 1));
+        graph.addEdge(new DirectedWeightEdge(6, 8, 6));
+        graph.addEdge(new DirectedWeightEdge(7, 8, 7));
+
+        graph.addEdge(new DirectedWeightEdge(1, 0, 4));
+        graph.addEdge(new DirectedWeightEdge(7, 0, 8));
+        graph.addEdge(new DirectedWeightEdge(2, 1, 8));
+        graph.addEdge(new DirectedWeightEdge(7, 1, 11));
+        graph.addEdge(new DirectedWeightEdge(3, 2, 7));
+        graph.addEdge(new DirectedWeightEdge(5, 2, 4));
+        graph.addEdge(new DirectedWeightEdge(8, 2, 2));
+        graph.addEdge(new DirectedWeightEdge(4, 3, 9));
+        graph.addEdge(new DirectedWeightEdge(5, 3, 14));
+        graph.addEdge(new DirectedWeightEdge(5, 4, 10));
+        graph.addEdge(new DirectedWeightEdge(6, 5, 2));
+        graph.addEdge(new DirectedWeightEdge(7, 6, 1));
+        graph.addEdge(new DirectedWeightEdge(8, 6, 6));
+        graph.addEdge(new DirectedWeightEdge(8, 7, 7));
         DijkstraSP sp = new DijkstraSP(graph, 0);
-        for (DirectedWeightEdge e : sp.getEdges()) {
-            if (e != null) {
+        for (DirectedWeightEdge e : sp.getEdges())
+        {
+            if (e != null)
+            {
                 System.out.println(e.getFrom() + " " + e.getTo() + " " + e.getWeight());
             }
         }
