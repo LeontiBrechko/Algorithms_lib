@@ -9,7 +9,7 @@ import java.util.Collections;
 public class LIS {
     // TODO: modify to return result array
     // TODO: REMEMBER EXTREMAL CASES
-    private int longestIncreasingSequenceQuery(int[] a) {
+    private static int longestIncreasingSubsequenceQuery(int[] a) {
         ArrayList<Integer> l = new ArrayList<>();
         int pos;
         for (int i = 0; i < a.length; i++) {
@@ -19,5 +19,9 @@ public class LIS {
             else l.set(pos, a[i]);
         }
         return l.size();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(longestIncreasingSubsequenceQuery(new int[] {-7, 10, 9, 2, 3, 8, 8, 1, 2, 3, 4}));
     }
 }
